@@ -30,6 +30,7 @@
         //inicjacja zmiennej błędu logowania
         if(!isset($_SESSION['login_error'])){
             $_SESSION['login_error'] = 0;
+            $_SESSION['login_tried'] = 0;
         }
 
         // na podstawie statusu logowania system decyduje którą stronę wyświetlić

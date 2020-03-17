@@ -1,19 +1,20 @@
 <?php
-if($_SESSION['login_error'] == 0){ //skrypt rusza tylko jesli nie wykryto bledu
-        if(!isset($_POST['username']) || trim($_POST['username'] == '')){
-            $_SESSION['login_error'] = 1;
-            // pole 'username' jest puste 
-        }else if(!isset($_POST['password']) || trim($_POST['password'] == '')){
-            $_SESSION['login_error'] = 2;
-            // pole 'password' jest puste
-        }else{
-            // pola nie sa puste, sprawdzanie danych
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
+    if($_SESSION['login_error'] == 0){ //skrypt rusza tylko jesli nie wykryto bledu
+            if(!isset($_POST['username']) || trim($_POST['username'] == '')){
+                $_SESSION['login_error'] = 1;
+                // pole 'username' jest puste 
+            }else if(!isset($_POST['password']) || trim($_POST['password'] == '')){
+                $_SESSION['login_error'] = 2;
+                // pole 'password' jest puste
+            }else{
+                // pola nie sa puste, sprawdzanie danych
+                $username = $_POST['username'];
+                $password = $_POST['password'];
 
         }
     }
-
+}
 ?>
 
 
@@ -38,6 +39,7 @@ if($_SESSION['login_error'] == 0){ //skrypt rusza tylko jesli nie wykryto bledu
                                 <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Zaloguj">
                             </div>
                             <?php
+                            $_SESSION['login_tried'] = 1; // próba się odbyła, ustawienie flagi
                             if($_SESSION['login_error'] == 1){
                             echo "<div class='alert alert-warning' role='alert'>";
                             echo "   Pole 'login' nie może być puste! ";

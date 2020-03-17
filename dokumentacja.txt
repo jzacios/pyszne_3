@@ -11,6 +11,10 @@ zmienne sesyjne:
         2: hasło puste
         3: loginu nie ma w bazie danych
         4: hasło nie zgadza się
+    
+    login_tried - czy była próba logowania
+        0: nie
+        1: tak
 
 
 pliki:
