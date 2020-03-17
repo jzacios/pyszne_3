@@ -4,3 +4,9 @@ zmienne sesyjne:
         0: nie podjęto próby zalogowania lub logowanie nie powiodło się (login_error)
         1: logowanie powiodło się - uzytkownik
         2: logowanie powiodło się - administrator
+
+
+pliki:
+
+    index - zawiera w sobie każdą podstronę, na podstawie statusu logowanie decyduje którą stronę wyświetlić
+
