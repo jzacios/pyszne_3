@@ -11,6 +11,17 @@ if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
                 // pola nie sa puste, sprawdzanie danych
                 $username = $_POST['username'];
                 $password = $_POST['password'];
+                $stmt = $conn ->prepare("SELECT PASSWORD FROM passwords WHERE ID = '".$username."'"); //pobranie hasła z bazy danych
+                $stmt->execute();
+                if($stmt->rowCount() == 0){
+                    $_SESSION['login_error'] = 3; //loginu nie ma w bazie danych
+                }
+                $db_password = $stmt->fetch();
+                if($db_password['PASSWORD'] != $password){
+                    $_SESSION['login_error'] = 4; //login nie równa się hasłu
+                }else{
+                    //poprawnie zalogowano !
+                }
 
         }
     }
@@ -33,7 +44,7 @@ if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Zaloguj">
@@ -41,15 +52,25 @@ if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
                             <?php
                             $_SESSION['login_tried'] = 1; // próba się odbyła, ustawienie flagi
                             if($_SESSION['login_error'] == 1){
-                            echo "<div class='alert alert-warning' role='alert'>";
-                            echo "   Pole 'login' nie może być puste! ";
-                            echo "</div>";
+                                echo "<div class='alert alert-warning' role='alert'>";
+                                echo "   Pole 'login' nie może być puste! ";
+                                echo "</div>";
                             }
                             if($_SESSION['login_error'] == 2){
                                 echo "<div class='alert alert-warning' role='alert'>";
                                 echo "   Pole 'hasło' nie może być puste! ";
                                 echo "</div>";
                                 }
+                            if($_SESSION['login_error'] == 3){
+                                echo "<div class='alert alert-warning' role='alert'>";
+                                echo "Do podanego loginu nie jest przypisane żadne konto! ";
+                                echo "</div>";
+                            }
+                            if($_SESSION['login_error'] == 4){
+                                echo "<div class='alert alert-warning' role='alert'>";
+                                echo "Podane hasło jest błędne! ";
+                                echo "</div>";
+                            }
                             ?>
                         </form>
                     </div>
