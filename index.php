@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shifts</title>
+
+
+    <!-- BOOTSTRAP -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style/login.css">
+
+
+
 </head>
-<body>
     <?php
         // rozpoczecie sesji
         session_start();
@@ -24,7 +37,4 @@
         }else include("pages/unexpected_error.php");
 
     ?>
-
-
-</body>
 </html>
