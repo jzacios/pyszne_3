@@ -5,6 +5,13 @@ zmienne sesyjne:
         1: logowanie powiodło się - uzytkownik
         2: logowanie powiodło się - administrator
 
+    login_error - error logowania
+        0: brak błędu
+        1: login pusty
+        2: hasło puste
+        3: loginu nie ma w bazie danych
+        4: hasło nie zgadza się
+
 
 pliki:
 

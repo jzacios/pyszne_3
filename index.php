@@ -27,6 +27,11 @@
         // polaczenie z baza danych
         include("scripts/db.php");
 
+        //inicjacja zmiennej błędu logowania
+        if(!isset($_SESSION['login_error'])){
+            $_SESSION['login_error'] = 0;
+        }
+
         // na podstawie statusu logowania system decyduje którą stronę wyświetlić
         if(!isset($_SESSION['login_status'])){
             $_SESSION['login_status'] = 0;
