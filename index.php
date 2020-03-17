@@ -24,6 +24,9 @@
         // rozpoczecie sesji
         session_start();
         
+        // polaczenie z baza danych
+        include("scripts/db.php");
+
         // na podstawie statusu logowania system decyduje którą stronę wyświetlić
         if(!isset($_SESSION['login_status'])){
             $_SESSION['login_status'] = 0;
