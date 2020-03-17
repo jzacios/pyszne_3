@@ -14,8 +14,10 @@
 
 
 
+
     <!-- CSS -->
     <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/main.css">
 
 
 

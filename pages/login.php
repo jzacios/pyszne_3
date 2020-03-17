@@ -11,17 +11,31 @@ if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
                 // pola nie sa puste, sprawdzanie danych
                 $username = $_POST['username'];
                 $password = $_POST['password'];
-                $stmt = $conn ->prepare("SELECT PASSWORD FROM passwords WHERE ID = '".$username."'"); //pobranie hasła z bazy danych
+                $stmt = $conn->prepare("SELECT PASSWORD FROM passwords WHERE ID = '".$username."'"); //pobranie hasła z bazy danych
                 $stmt->execute();
                 if($stmt->rowCount() == 0){
                     $_SESSION['login_error'] = 3; //loginu nie ma w bazie danych
                 }
                 $db_password = $stmt->fetch();
-                if($db_password['PASSWORD'] != $password){
-                    $_SESSION['login_error'] = 4; //login nie równa się hasłu
-                }else{
-                    //poprawnie zalogowano !
+                if($db_password){
+                    if($db_password['PASSWORD'] != $password){
+                        $_SESSION['login_error'] = 4; //login nie równa się hasłu
+                    }else{
+                        $stmt = $conn->prepare("SELECT NAME, SURNAME, EMAIL, NUMBER, PRIVILEGE FROM users WHERE ID = '".$username."'"); // pobranie danych użytkownika
+                        $stmt->execute();
+                        if($stmt->rowCount() == 1){
+                            $user = $stmt->fetch();
+                            $_SESSION['id'] = $username;
+                            $_SESSION['name'] = $user['NAME'];
+                            $_SESSION['surname'] = $user['SURNAME'];
+                            $_SESSION['email'] = $user['EMAIL'];
+                            $_SESSION['number'] = $user['NUMBER'];
+                            $_SESSION['login_status'] = $user['PRIVILEGE'];
+                            header("Location: index.php");
+                        }
+                    }
                 }
+                
 
         }
     }

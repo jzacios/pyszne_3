@@ -1,0 +1,24 @@
+.nav-link {
+  margin-right: 2em;
+  border-color: lightgray;
+  padding-left: 1em !important;
+  padding-right: 1em !important;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+.none {
+  display: none;
+}
+
+.add_shift {
+  width: 90vw;
+  background-color: lightgray;
+  margin-left: 5vw;
+  margin-top: 2em;
+}
+
+.add_shift form {
+  padding: 2em;
+}
+/*# sourceMappingURL=main.css.map */

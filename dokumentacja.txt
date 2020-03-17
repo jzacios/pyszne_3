@@ -16,6 +16,14 @@ zmienne sesyjne:
         0: nie
         1: tak
 
+    name - imie
+    surname - nazwisko
+    email - email
+    number - numer
+    privilege - uprawnienie
+        1: zwykły użytkownik
+        2: administrator
+
 
 pliki:
 
