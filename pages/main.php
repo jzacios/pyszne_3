@@ -17,6 +17,9 @@
     </li>
     <li class="nav-item">
       <a class="nav-link text-info btn btn-light" href="#">Profil</a>
+	</li>
+	<li class="nav-item">
+      <a class="nav-link text-info btn btn-light" href="reset.php">Wyloguj się</a>
     </li>
   </ul>
 </nav>
