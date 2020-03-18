@@ -162,7 +162,7 @@
 			<tbody class="">
 				<?php
 
-					$stmt = "SELECT ID, date, shift_start, shift_end, lenght, week_number FROM shifts WHERE taken = 0 AND owner_ID != ".$_SESSION['id']." ORDER BY date, shift_start, shift_end";
+					$stmt = "SELECT ID, date, shift_start, shift_end, lenght, week_number FROM shifts WHERE taken = 0 AND archived != 1 ORDER BY date, shift_start, shift_end";
 					$shifts = $conn->query($stmt);
 					while($shift = $shifts->fetch()){
 						echo "<tr>";
@@ -395,3 +395,14 @@
 		</table>
 	</div>
 </div>
+<form method="POST" action="pages/scripts/take.php" id="take_form" name="take_form" style="display: none;">
+        <input type="text" name="shift_id" id="shift_id"></input>
+        <input type="text" name="taker_id" id="taker_id"></input>
+</form>
+<script>
+        function take(id){
+            document.getElementById('shift_id').value=id;
+            document.getElementById('taker_id').value=<?php echo $_SESSION['id']; ?>;
+            document.getElementById('take_form').submit();
+        }
+    </script>
