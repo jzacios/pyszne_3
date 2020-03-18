@@ -14,7 +14,7 @@ $owner_id = $_SESSION['id'];
 $date = $_POST['date'];
 $shift_start = $_POST['shift_start'];
 $shift_end = $_POST['shift_end'];
-$lenght = ($shift_end - $shift_start)/2;
+$lenght = ($shift_end - $shift_start);
 $week_number = date('W', strtotime($date));
 $year = date('Y', strtotime($date));
 

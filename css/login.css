@@ -1,0 +1,70 @@
+body {
+  background-image: url("pyszne.png");
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+  background-color: #F68920;
+}
+
+body form {
+  background: #ff751a;
+  width: 500px;
+  margin: 8% auto;
+  padding: 50px 0;
+  text-align: center;
+  -webkit-box-shadow: 0px 10px 40px black;
+          box-shadow: 0px 10px 40px black;
+  border-radius: 25px;
+}
+
+body form .wrapper_login {
+  margin: 30px auto;
+  width: 80%;
+  position: relative;
+  -webkit-box-shadow: 0px 8px 10px -10px black;
+          box-shadow: 0px 8px 10px -10px black;
+}
+
+body form .wrapper_login input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background: #efefef;
+  padding-left: 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body form .wrapper_login span {
+  position: absolute;
+  font-size: 20px;
+  left: 0;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  background: -webkit-gradient(linear, left top, right top, from(#994d00), to(#996633));
+  background: linear-gradient(to right, #994d00, #996633);
+}
+
+body form .wrapper_login span .fa {
+  padding: 10px;
+  color: #fff;
+}
+
+body form .wrapper_login_submit input {
+  width: 130px;
+  height: 40px;
+  margin-left: 36%;
+  display: block;
+  color: #fff;
+  border: 0;
+  font-size: 16px;
+  outline: none;
+  background: -webkit-gradient(linear, left top, right top, from(#994d00), to(#996633));
+  background: linear-gradient(to right, #994d00, #996633);
+  cursor: pointer;
+}
+
+body form a {
+  text-decoration: none;
+}
+/*# sourceMappingURL=login.css.map */
