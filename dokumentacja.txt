@@ -24,8 +24,5 @@ zmienne sesyjne:
         1: zwykły użytkownik
         2: administrator
 
-
-pliki:
-
-    index - zawiera w sobie każdą podstronę, na podstawie statusu logowanie decyduje którą stronę wyświetlić
+    curr_date - dzisiejsza data
 

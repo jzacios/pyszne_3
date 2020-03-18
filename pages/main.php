@@ -22,7 +22,7 @@
 </nav>
 
 <div class="add_shift">
-    <form class="form-horizontal">
+    <form class="form-horizontal" method="POST" action="pages/scripts/add.php">
     <fieldset>
 
     <!-- Form Name -->
