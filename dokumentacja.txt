@@ -16,6 +16,7 @@ zmienne sesyjne:
         0: nie
         1: tak
 
+    id - id usera
     name - imie
     surname - nazwisko
     email - email
