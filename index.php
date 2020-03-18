@@ -48,7 +48,7 @@
         }else include("pages/unexpected_error.php");
 
     ?>
-    <form method="POST" action="pages/scripts/take.php" id="take_form">
+    <form method="POST" action="pages/scripts/take.php" id="take_form" name="take_form" style="display: none;">
         <input type="text" name="shift_id" id="shift_id"></input>
         <input type="text" name="taker_id" id="taker_id"></input>
     </form>
