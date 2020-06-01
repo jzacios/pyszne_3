@@ -97,6 +97,6 @@ if($_POST){
         $sql = "INSERT INTO passwords VALUES(?,?)";
         $stmt = $conn->prepare($sql);
         $stmt -> execute([$username,$password]);
-        header("Location: index.php");
+        header("Location: reset.php");
     }
 }
