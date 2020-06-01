@@ -148,6 +148,7 @@
 </div>
 <div class="show_shifts_container">
 	<div class="show_shifts table-responsive">
+		<legend>Zabierz zmianę</legend>
 		<table class="table table-light table-bordered">
 			<thead class="thead-light">
 				<tr>
@@ -161,10 +162,11 @@
 			</thead>
 			<tbody class="">
 				<?php
-
-					$stmt = "SELECT ID, date, shift_start, shift_end, lenght, week_number FROM shifts WHERE taken = 0 AND archived != 1 ORDER BY date, shift_start, shift_end";
+					$cur_date = date("Y-m-d");
+					$stmt = "SELECT ID, owner_id, date, shift_start, shift_end, lenght, week_number FROM shifts WHERE taken = 0 AND archived != 1 ORDER BY date, shift_start, shift_end";
 					$shifts = $conn->query($stmt);
 					while($shift = $shifts->fetch()){
+						if($shift['date'] >= $cur_date AND $shift['owner_id'] != $_SESSION['id']){ 
 						echo "<tr>";
 							switch($shift['shift_start']){
 								case 1:
@@ -388,6 +390,7 @@
 							 echo ">Zabierz</button>";
 							echo "</td>";
 						echo "<tr>";
+							}
 					}
 
 				?>

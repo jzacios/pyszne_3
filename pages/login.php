@@ -63,6 +63,9 @@ if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Zaloguj">
                             </div>
+                            <div class="form-group">
+                                <a href="rejestracja.php"><span class="btn btn-info btn-md col-md-12">Rejestracja</span></a>
+                            </div>
                             <?php
                             $_SESSION['login_tried'] = 1; // próba się odbyła, ustawienie flagi
                             if($_SESSION['login_error'] == 1){
