@@ -7,15 +7,6 @@
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link text-info btn btn-light" href="#">Dodaj zmiane</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-info btn btn-light" href="#">Zobacz zmiany</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-info btn btn-light" href="#">Zobacz swoje zmiany</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link text-info btn btn-light" href="#">Profil</a>
 	</li>
 	<li class="nav-item">
