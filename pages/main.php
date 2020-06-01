@@ -389,14 +389,14 @@
 		</table>
 	</div>
 </div>
-<form method="POST" action="pages/scripts/take.php" id="take_form" name="take_form" style="display: none;">
+<form method="POST" action="pages/scripts/take.php" id="take_form" name="take_form" style="">
         <input type="text" name="shift_id" id="shift_id"></input>
         <input type="text" name="taker_id" id="taker_id"></input>
 </form>
 <script>
         function take(id){
             document.getElementById('shift_id').value=id;
-            document.getElementById('taker_id').value=<?php echo $_SESSION['id']; ?>;
+            document.getElementById('taker_id').value=<?php echo "'".$_SESSION['id']."'"; ?>;
             document.getElementById('take_form').submit();
         }
-    </script>
+		</script>
