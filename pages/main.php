@@ -356,11 +356,34 @@
 									break;
 								case 20:
 									$length='10:30';
+									break;
 								case 21:
 									$length='11:00';
 								}
 							echo "<td>";
-								echo $shift['date'];
+								switch(date("l", strtotime($shift['date']))){
+									case "Monday":
+										$day = "Poniedziałek";
+										break;
+									case "Tuesday":
+										$day = "Wtorek";
+										break;
+									case "Wednesday":
+										$day = "Środa";
+										break;
+									case "Thursday":
+										$day = "Czwartek";
+									case "Friday":
+										$day = "Piątek";
+										break;
+									case "Saturday":
+										$day = "Sobota";
+										break;
+									case "Sunday":
+										$day = "Niedziela";
+										break;
+								}
+								echo $day." ".$shift['date'];
 							echo "</td>";
 							echo "<td>";
 								echo $shift_start;
@@ -556,7 +579,29 @@
 									break;
 								}
 							echo "<td>";
-								echo $shift['date'];
+								switch(date("l", strtotime($shift['date']))){
+									case "Monday":
+										$day = "Poniedziałek";
+										break;
+									case "Tuesday":
+										$day = "Wtorek";
+										break;
+									case "Wednesday":
+										$day = "Środa";
+										break;
+									case "Thursday":
+										$day = "Czwartek";
+									case "Friday":
+										$day = "Piątek";
+										break;
+									case "Saturday":
+										$day = "Sobota";
+										break;
+									case "Sunday":
+										$day = "Niedziela";
+										break;
+								}
+								echo $day." ".$shift['date'];
 							echo "</td>";
 							echo "<td>";
 								echo $shift_start;
