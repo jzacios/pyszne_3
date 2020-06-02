@@ -148,6 +148,7 @@
 					<th scope="col">Koniec</th>
 					<th scope="col">Długość</th>
 					<th scope="col">Numer tygodnia</th>
+					<th scope="col">Właściciel</th>
 					<th scope="col">Zabierz</th>
 					</tr>
 			</thead>
@@ -372,6 +373,12 @@
 							echo "</td>";
 							echo "<td>";
 								echo $shift['week_number'];
+							echo "</td>";
+							echo "<td>";
+								$sql = "SELECT name, surname FROM users WHERE id ='".$shift['owner_id']."'";
+								$stmt = $conn->query($sql);
+								$owner = $stmt->fetch();
+								echo $owner['name']." ".$owner['surname'];
 							echo "</td>";
 							echo "<td>";
 							 echo "<button type='button' class='btn btn-primary'";

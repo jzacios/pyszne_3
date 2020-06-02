@@ -20,7 +20,6 @@ if($_SESSION['login_tried'] == 1){ //sprawdzanie czy była próba logowania
                 if($db_password){
                     if(!password_verify($password, $db_password['PASSWORD'])){
                         $_SESSION['login_error'] = 4;
-                        echo $db_password['PASSWORD'];
                     }else{
                         $stmt = $conn->prepare("SELECT NAME, SURNAME, EMAIL, NUMBER, PRIVILEGE FROM users WHERE ID = '".$username."'"); // pobranie danych użytkownika
                         $stmt->execute();

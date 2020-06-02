@@ -91,6 +91,9 @@ if(isset($_POST['username'])){
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Zarejestruj">
                             </div>
+                            <div class="form-group">
+                                <a href="reset.php"><span class="btn btn-info btn-md col-md-12"> <- Wróć</span></a>
+                            </div>
                             <?php
                                 if($_SESSION['reg_error_empty'] == 1){
                                     echo "<div class='alert alert-warning' role='alert'>";
