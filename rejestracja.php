@@ -25,9 +25,34 @@
 </head>
 <?php
 session_start();
+include("scripts/db.php");
+
+// Ustawianie flag na 0
+$_SESSION['reg_error_empty'] = 0;
+$_SESSION['reg_error_multiplelog'] = 0;
+$_SESSION['reg_error_passhort'] = 0;
+$_SESSION['reg_error_passrepeat'] = 0;
+
 if(isset($_POST['username'])){
     if($_POST['username'] == '' OR $_POST['password'] == '' OR $_POST['name'] == '' OR $_POST['surname'] == '' OR $_POST['email'] == ''){
-        $_SESSION['reg_error'] = 1;
+        $_SESSION['reg_error_empty'] = 1;
+    }
+    $username = $_POST['username'];
+    if($username != ''){
+        $sql = "SELECT * FROM users WHERE ID = '".$username."'";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        if($stmt->rowCount() > 0){
+            $_SESSION['reg_error_multiplelog'] = 1;
+        }
+    }
+    $password = $_POST['password'];
+    if(strlen($password)<6){
+        $_SESSION['reg_error_passhort'] = 1;
+    }
+    $password2 = $_POST['password_repeat'];
+    if($password != $password2){
+        $_SESSION['reg_error_passrepeat'] = 1;
     }
 }
 ?>
@@ -40,12 +65,16 @@ if(isset($_POST['username'])){
                         <form id="register-form" class="form" action="" method="post">
                             <h3 class="text-center text-info">Rejestracja</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Username:</label><br>
+                                <label for="username" class="text-info">Nazwa użytkownika:</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
+                                <label for="password" class="text-info">Hasło:</label><br>
                                 <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password_repeat" class="text-info">Powtórz hasło:</label><br>
+                                <input type="password" name="password_repeat" id="password_repeat" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="text-info">Imię:</label><br>
@@ -63,13 +92,26 @@ if(isset($_POST['username'])){
                                 <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Zarejestruj">
                             </div>
                             <?php
-                            if(isset($_SESSION['reg_error'])){
-                                if($_SESSION['reg_error'] == 1){
+                                if($_SESSION['reg_error_empty'] == 1){
                                     echo "<div class='alert alert-warning' role='alert'>";
                                     echo "   Żadne pole nie może pozostać puste! ";
                                     echo "</div>";
                                 }
-                            }
+                                if($_SESSION['reg_error_multiplelog'] == 1){
+                                    echo "<div class='alert alert-warning' role='alert'>";
+                                    echo "   Podany login już istnieje w bazie danych! ";
+                                    echo "</div>";
+                                }
+                                if($_SESSION['reg_error_passhort'] == 1){
+                                    echo "<div class='alert alert-warning' role='alert'>";
+                                    echo "   Podane hasło jest zbyt krótkie! ";
+                                    echo "</div>";
+                                }
+                                if($_SESSION['reg_error_passrepeat'] == 1){
+                                    echo "<div class='alert alert-warning' role='alert'>";
+                                    echo "   Hasła nie są takie same! ";
+                                    echo "</div>";
+                                }
                             ?>                 
                         </form>
                     </div>
@@ -80,12 +122,13 @@ if(isset($_POST['username'])){
 </body>
 <?php
 if($_POST){
-    if($_SESSION['reg_error'] == 1){
-        echo 'error';
-        $_SESSION['reg_error'] = 0; //reset flagi
+    if($_SESSION['reg_error_empty'] == 1 OR $_SESSION['reg_error_multiplelog'] == 1){
+        $_SESSION['reg_error_empty'] = 0; //reset flag
+        $_SESSION['reg_error_multiplelog'] = 0;
+        $_SESSION['reg_error_passhort'] = 0;
+        $_SESSION['reg_error_passrepeat'] = 0;
     }
     else{
-        include("scripts/db.php");
         $username = $_POST['username'];
         $password = $_POST['password'];
         $name = $_POST['name'];
@@ -96,6 +139,7 @@ if($_POST){
         $stmt -> execute([$email,$username,$name,$surname]);
         $sql = "INSERT INTO passwords VALUES(?,?)";
         $stmt = $conn->prepare($sql);
+        $password = password_hash($password, PASSWORD_DEFAULT);
         $stmt -> execute([$username,$password]);
         header("Location: reset.php");
     }
