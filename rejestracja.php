@@ -125,7 +125,7 @@ if(isset($_POST['username'])){
 </body>
 <?php
 if($_POST){
-    if($_SESSION['reg_error_empty'] == 1 OR $_SESSION['reg_error_multiplelog'] == 1){
+    if($_SESSION['reg_error_empty'] == 1 OR $_SESSION['reg_error_multiplelog'] == 1 OR $_SESSION['reg_error_passhort'] == 1 OR $_SESSION['reg_error_passrepeat'] == 1){
         $_SESSION['reg_error_empty'] = 0; //reset flag
         $_SESSION['reg_error_multiplelog'] = 0;
         $_SESSION['reg_error_passhort'] = 0;
