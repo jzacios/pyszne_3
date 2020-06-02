@@ -389,14 +389,223 @@
 		</table>
 	</div>
 </div>
+
+<div class="show_shifts_container">
+	<div class="show_shifts table-responsive">
+		<legend>Moje zmiany</legend>
+		<table class="table table-light table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Data</th>
+					<th scope="col">Początek</th>
+					<th scope="col">Koniec</th>
+					<th scope="col">Kto oddał</th>
+					<th scope="col">Kto zabrał</th>
+					<th scope="col">Archiwizuj</th>
+				</tr>
+			</thead>
+			<tbody class="">
+				<?php
+					$cur_date = date("Y-m-d");
+					$stmt = "SELECT ID, owner_id, date, shift_start, shift_end, lenght, week_number, taker_id, taken FROM shifts WHERE archived != 1 ORDER BY date, shift_start, shift_end";
+					$shifts = $conn->query($stmt);
+					while($shift = $shifts->fetch()){
+						if($shift['date'] >= $cur_date AND $shift['owner_id'] == $_SESSION['id'] OR $shift['taker_id'] == $_SESSION['id']){ 
+						echo "<tr>";
+							switch($shift['shift_start']){
+								case 1:
+									$shift_start='11:00';
+									break;
+								case 2:
+									$shift_start='11:30'; 
+									break;
+								case 3:
+									$shift_start='12:00'; 
+									break;
+								case 4:
+									$shift_start='12:30'; 
+									break;
+								case 5:
+									$shift_start='13:00'; 
+									break;
+								case 6:
+									$shift_start='13:30'; 
+									break;
+								case 7:
+									$shift_start='14:00'; 
+									break;
+								case 8:
+									$shift_start='14:30'; 
+									break;
+								case 9:
+									$shift_start='15:00'; 
+									break;
+								case 10:
+									$shift_start='15:30'; 
+									break;
+								case 11:
+									$shift_start='16:00'; 
+									break;
+								case 12:
+									$shift_start='16:30'; 
+									break;
+								case 13:
+									$shift_start='17:00'; 
+									break;
+								case 14:
+									$shift_start='17:30'; 
+									break;
+								case 15:
+									$shift_start='18:00'; 
+									break;
+								case 16:
+									$shift_start='18:30'; 
+									break;
+								case 17:
+									$shift_start='19:00'; 
+									break;
+								case 18:
+									$shift_start='19:30'; 
+									break;
+								case 19:
+									$shift_start='20:00'; 
+									break;
+								case 20:
+									$shift_start='20:30'; 
+									break;
+								case 21:
+									$shift_start='21:00'; 
+									break;
+								case 22:
+									$shift_start='21:30'; 
+									break;
+								}
+							switch($shift['shift_end']){
+								case 2:
+									$shift_end='11:30'; 
+									break;
+								case 3:
+									$shift_end='12:00'; 
+									break;
+								case 4:
+									$shift_end='12:30'; 
+									break;
+								case 5:
+									$shift_end='13:00'; 
+									break;
+								case 6:
+									$shift_end='13:30'; 
+									break;
+								case 7:
+									$shift_end='14:00'; 
+									break;
+								case 8:
+									$shift_end='14:30'; 
+									break;
+								case 9:
+									$shift_end='15:00'; 
+									break;
+								case 10:
+									$shift_end='15:30'; 
+									break;
+								case 11:
+									$shift_end='16:00'; 
+									break;
+								case 12:
+									$shift_end='16:30'; 
+									break;
+								case 13:
+									$shift_end='17:00'; 
+									break;
+								case 14:
+									$shift_end='17:30'; 
+									break;
+								case 15:
+									$shift_end='18:00'; 
+									break;
+								case 16:
+									$shift_end='18:30'; 
+									break;
+								case 17:
+									$shift_end='19:00'; 
+									break;
+								case 18:
+									$shift_end='19:30'; 
+									break;
+								case 19:
+									$shift_end='20:00'; 
+									break;
+								case 20:
+									$shift_end='20:30'; 
+									break;
+								case 21:
+									$shift_end='21:00'; 
+									break;
+								case 22:
+									$shift_end='21:30'; 
+									break;
+								case 23:
+									$shift_end='22:00'; 
+									break;
+								}
+							echo "<td>";
+								echo $shift['date'];
+							echo "</td>";
+							echo "<td>";
+								echo $shift_start;
+							echo "</td>";
+							echo "<td>";
+								echo $shift_end;
+							echo "</td>";
+							echo "<td>";
+								$stmt = "SELECT name, surname FROM users WHERE ID = '".$shift['owner_id']."'";
+								$name = $conn->query($stmt);
+								$name = $name->fetch();
+								echo $name['name']." ".$name['surname'];
+							echo "</td>";
+							echo "<td>";
+								if($shift['taken'] == 0){
+									echo "Nie zabrana.";
+								}else{
+									$stmt = "SELECT name, surname FROM users WHERE ID = '".$shift['taker_id']."'";
+									$name = $conn->query($stmt);
+									$name = $name->fetch();
+									echo $name['name']." ".$name['surname'];
+								}
+							echo "</td>";
+							echo "<td>";
+							 echo "<button type='button' class='btn btn-primary'";
+							 echo "onclick=archive(";
+							 echo $shift['ID'];
+							 echo ")";
+							 echo ">Archiwizuj</button>";
+							echo "</td>";
+						echo "<tr>";
+							}
+					}
+
+				?>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
 <form method="POST" action="pages/scripts/take.php" id="take_form" name="take_form" style="display:none;">
         <input type="text" name="shift_id" id="shift_id"></input>
         <input type="text" name="taker_id" id="taker_id"></input>
+</form>
+<form method="POST" action="pages/scripts/archive.php" id="archive_form" name="archive_form" style="display:none;">
+        <input type="text" name="archive_shift_id" id="archive_shift_id"></input>
 </form>
 <script>
         function take(id){
             document.getElementById('shift_id').value=id;
             document.getElementById('taker_id').value=<?php echo "'".$_SESSION['id']."'"; ?>;
             document.getElementById('take_form').submit();
+        }
+				function archive(id){
+            document.getElementById('archive_shift_id').value=id;
+            document.getElementById('archive_form').submit();
         }
 		</script>
