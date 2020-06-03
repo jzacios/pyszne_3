@@ -373,6 +373,7 @@
 										break;
 									case "Thursday":
 										$day = "Czwartek";
+										break;
 									case "Friday":
 										$day = "Piątek";
 										break;
@@ -591,6 +592,7 @@
 										break;
 									case "Thursday":
 										$day = "Czwartek";
+										break;
 									case "Friday":
 										$day = "Piątek";
 										break;
